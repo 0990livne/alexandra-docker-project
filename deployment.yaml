@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-nginx
+  template:
+    metadata:
+      labels:
+        app: flask-nginx
+    spec:
+      containers:
+      - name: flask-app
+        image: alexlivne/flask-app:latest
+        ports:
+        - containerPort: 5050
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5050
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 500m
+

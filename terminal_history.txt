@@ -1,0 +1,16 @@
+  138  nano HW.py
+  139  kubectl get pods -l app=flask-nginx\n
+  140  for pod in $(kubectl get pods -l app=flask-nginx -o jsonpath='{.items[*].metadata.name}'); do\n  echo "Logs for pod: $pod"\n  kubectl logs $pod -c flask-app\n  echo "-------------------------"\ndone\n
+  141  nano HW.py
+  142  docker build -t alexlivne/flask-app:latest .\ndocker push alexlivne/flask-app:latest\nkubectl rollout restart deployment flask-nginx-deployment\n
+  143  kubectl get pods
+  144  kubectl logs flask-nginx-deployment-7c64fb4f97-6czhm -c flask-app\nkubectl logs flask-nginx-deployment-7dd58f5594-hlhzj -c flask-app\nkubectl logs flask-nginx-deployment-85c9dd8f7b-ql7vv -c flask-app\n
+  145  nano HW.py\n
+  146  rm HW.py
+  147  nanodocker build -t alexandra-flask-app .\n
+  148  docker build -t alexandra-flask-app .\n
+  149  cp "/Users/alexlivne/Library/Application Support/JetBrains/PyCharm2025.1/scratches/HW.py" ~/alexandra-docker-project/HW.py\n
+  150  cd ~/alexandra-docker-project\n
+  151  docker build -t alexandra-flask-app .\n
+  152  docker run -p 5050:5000 alexandra-flask-app\n
+  153  pwd
